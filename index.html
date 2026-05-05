@@ -5,8 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Ruta Bus SENA — CTPGA Caucasia</title>
 
-<!-- ═══ PWA META ═══ -->
-<link rel="manifest" href="manifest.json">
+<meta property="og:title" content="Ruta Bus SENA — CTPGA Caucasia">
+<meta property="og:description" content="Consulta los horarios y paradas actualizados para el transporte de aprendices en Caucasia.">
+<meta property="og:image" content="https://tu-dominio.com/img/preview-ruta.jpg"> <meta property="og:url" content="https://tu-dominio.com/">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ruta Bus SENA — CTPGA Caucasia">
+<meta name="twitter:image" content="https://tu-dominio.com/img/preview-ruta.jpg"> <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a1628">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,7 +20,6 @@
 <link rel="apple-touch-icon" href="icons/icon-192x192.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
-<!-- ══════════════════ -->
 
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -64,13 +69,8 @@
     50%{transform:translateY(-30px) scale(1.05);}
   }
 
-  .wrap {
-    position:relative; z-index:1;
-    max-width:480px; margin:0 auto;
-    padding: 0 0 100px;
-  }
+  .wrap { position:relative; z-index:1; max-width:480px; margin:0 auto; padding: 0 0 100px; }
 
-  /* ── BANNER INSTALAR PWA ── */
   #pwa-banner {
     display:none;
     position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
@@ -83,668 +83,146 @@
     animation: slideUp .4s ease;
   }
   #pwa-banner.visible { display:flex; }
-  @keyframes slideUp {
-    from{transform:translateX(-50%) translateY(40px);opacity:0;}
-    to{transform:translateX(-50%) translateY(0);opacity:1;}
-  }
-  #pwa-banner .pb-icon { font-size:2rem; flex-shrink:0; }
-  #pwa-banner .pb-text { flex:1; }
-  #pwa-banner .pb-text strong { display:block; font-size:.88rem; color:#fff; }
-  #pwa-banner .pb-text span { font-size:.75rem; color:var(--gray); }
-  #pwa-banner .pb-btn {
-    background: var(--verde); color:#fff; border:none;
-    border-radius:50px; padding:9px 18px;
-    font-family:'Nunito'; font-size:.82rem; font-weight:800;
-    cursor:pointer; white-space:nowrap;
-    box-shadow: 0 4px 12px rgba(0,166,81,0.4);
-  }
-  #pwa-banner .pb-close {
-    background:none; border:none; color:var(--gray);
-    font-size:1.1rem; cursor:pointer; padding:4px; flex-shrink:0;
-  }
-
-  /* ── HEADER ── */
-  header {
-    padding: 28px 24px 0;
-    display:flex; flex-direction:column; align-items:center;
-    text-align:center;
-  }
-
-  .sena-badge {
-    display:flex; align-items:center; gap:10px;
-    background: rgba(0,166,81,0.12);
-    border: 1.5px solid rgba(0,166,81,0.35);
-    border-radius:50px;
-    padding: 6px 18px 6px 10px;
-    margin-bottom:18px;
-    animation: fadeDown .6s ease both;
-  }
+  @keyframes slideUp { from{transform:translateX(-50%) translateY(40px);opacity:0;} to{transform:translateX(-50%) translateY(0);opacity:1;} }
+  
+  header { padding: 28px 24px 0; display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .sena-badge { display:flex; align-items:center; gap:10px; background: rgba(0,166,81,0.12); border: 1.5px solid rgba(0,166,81,0.35); border-radius:50px; padding: 6px 18px 6px 10px; margin-bottom:18px; animation: fadeDown .6s ease both; }
   .sena-badge svg { width:32px; height:32px; }
-  .sena-badge span {
-    font-family:'Bebas Neue'; font-size:1.5rem;
-    letter-spacing:3px; color: var(--verde-light);
-  }
+  .sena-badge span { font-family:'Bebas Neue'; font-size:1.5rem; letter-spacing:3px; color: var(--verde-light); }
+  .header-title { font-family:'Bebas Neue'; font-size: clamp(2.8rem, 12vw, 4rem); line-height:0.95; letter-spacing:2px; color: var(--white); animation: fadeDown .7s .1s ease both; }
+  .header-title em { font-style:normal; color: var(--verde); text-shadow: 0 0 30px var(--verde-glow); }
+  .header-sub { margin-top:8px; font-size:.85rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; color: var(--gray); animation: fadeDown .7s .2s ease both; }
 
-  .header-title {
-    font-family:'Bebas Neue';
-    font-size: clamp(2.8rem, 12vw, 4rem);
-    line-height:0.95;
-    letter-spacing:2px;
-    color: var(--white);
-    animation: fadeDown .7s .1s ease both;
-  }
-  .header-title em {
-    display:block; font-style:normal;
-    color: var(--verde);
-    text-shadow: 0 0 30px var(--verde-glow);
-  }
-
-  .header-sub {
-    margin-top:8px;
-    font-size:.85rem; font-weight:600;
-    letter-spacing:3px; text-transform:uppercase;
-    color: var(--gray);
-    animation: fadeDown .7s .2s ease both;
-  }
-
-  .disponible-chip {
-    margin-top:14px;
-    display:inline-flex; align-items:center; gap:7px;
-    background: linear-gradient(135deg, var(--verde-dark), var(--verde));
-    border-radius:50px; padding:8px 20px;
-    font-size:.82rem; font-weight:800; letter-spacing:1px;
-    box-shadow: 0 4px 18px rgba(0,166,81,0.4);
-    animation: pulse 2.5s infinite;
-  }
-  @keyframes pulse {
-    0%,100%{box-shadow:0 4px 18px rgba(0,166,81,0.4);}
-    50%{box-shadow:0 4px 30px rgba(0,166,81,0.7);}
-  }
-  .disponible-chip .dot {
-    width:8px; height:8px; border-radius:50%;
-    background:#fff; animation: blink 1.2s infinite;
-  }
-  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
-
-  /* ── COUNTDOWN ── */
   .countdown-card {
-    margin: 28px 16px 0;
-    border-radius:24px;
-    padding: 28px 24px;
+    margin: 28px 16px 0; border-radius:24px; padding: 28px 24px;
     background: linear-gradient(135deg, rgba(0,166,81,0.14) 0%, rgba(0,80,40,0.1) 100%);
-    border: 1.5px solid rgba(0,166,81,0.3);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
-    animation: fadeUp .6s .3s ease both;
-    position:relative; overflow:hidden;
+    border: 1.5px solid rgba(0,166,81,0.3); backdrop-filter: blur(10px);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.3); animation: fadeUp .6s .3s ease both; position:relative; overflow:hidden;
   }
-  .countdown-card::before {
-    content:'';
-    position:absolute; top:-40%; right:-20%;
-    width:200px; height:200px; border-radius:50%;
-    background: radial-gradient(circle, rgba(0,166,81,0.2), transparent 70%);
-    pointer-events:none;
-  }
+  .cd-blocks { display:flex; gap:10px; justify-content:center; margin-bottom:16px; }
+  .cd-block { flex:1; background:rgba(0,0,0,0.35); border:1px solid rgba(0,166,81,0.25); border-radius:16px; padding:14px 8px; display:flex; flex-direction:column; align-items:center; }
+  .cd-num { font-family:'Bebas Neue'; font-size:2.8rem; line-height:1; color: var(--verde-light); }
+  .cd-unit { font-size:.65rem; font-weight:700; color: var(--gray); margin-top:4px; }
 
-  .cd-label {
-    font-size:.72rem; font-weight:800; letter-spacing:3px;
-    text-transform:uppercase; color: var(--verde-light); margin-bottom:4px;
-  }
-  .cd-salida-name {
-    font-size:1.15rem; font-weight:800; color:#fff; margin-bottom:18px;
-  }
-
-  .cd-blocks {
-    display:flex; gap:10px; justify-content:center; margin-bottom:16px;
-  }
-  .cd-block {
-    flex:1; background:rgba(0,0,0,0.35); border:1px solid rgba(0,166,81,0.25);
-    border-radius:16px; padding:14px 8px;
-    display:flex; flex-direction:column; align-items:center;
-    min-width:0;
-  }
-  .cd-num {
-    font-family:'Bebas Neue'; font-size:2.8rem; line-height:1;
-    color: var(--verde-light);
-    text-shadow: 0 0 20px rgba(57,214,118,0.5);
-    transition: all .3s;
-  }
-  .cd-unit {
-    font-size:.65rem; font-weight:700; letter-spacing:2px;
-    text-transform:uppercase; color: var(--gray); margin-top:4px;
-  }
-
-  .cd-sep { align-self:center; font-family:'Bebas Neue'; font-size:2rem; color:rgba(255,255,255,0.3); }
-
-  .cd-next-info {
-    display:flex; align-items:center; gap:8px;
-    background: rgba(0,0,0,0.2); border-radius:12px; padding:10px 14px;
-    font-size:.82rem; color: var(--gray);
-  }
-  .cd-next-info .icon { font-size:1.1rem; }
-  .cd-next-info strong { color:#fff; }
-
-  /* ── OFFLINE BADGE ── */
-  #offline-badge {
-    display:none;
-    margin: 12px 16px 0;
-    background: rgba(255,140,0,0.12);
-    border: 1px solid rgba(255,140,0,0.35);
-    border-radius:12px; padding:10px 14px;
-    font-size:.78rem; color:#ff8c00;
-    text-align:center; font-weight:700;
-  }
-  #offline-badge.visible { display:block; }
-
-  /* ── HORARIOS ── */
-  .section {
-    margin: 24px 16px 0;
-    animation: fadeUp .6s .4s ease both;
-  }
-  .section-title {
-    font-family:'Bebas Neue'; font-size:1.4rem; letter-spacing:2px;
-    color:var(--gray); margin-bottom:12px;
-    display:flex; align-items:center; gap:8px;
-  }
-  .section-title::after {
-    content:''; flex:1; height:1px;
-    background: linear-gradient(to right, rgba(0,166,81,0.3), transparent);
-  }
-
-  .horarios-grid { display:flex; flex-direction:column; gap:10px; }
-
-  .horario-card {
-    display:flex; align-items:stretch; border-radius:18px; overflow:hidden;
-    background: var(--card-bg);
-    border: 1.5px solid var(--card-border);
-    backdrop-filter: blur(6px);
-    cursor:pointer; transition: transform .2s, box-shadow .2s;
-    position:relative;
-  }
-  .horario-card:active { transform:scale(.98); }
-  .horario-card.active-salida {
-    border-color: var(--verde);
-    box-shadow: 0 0 0 2px var(--verde), 0 8px 30px rgba(0,166,81,0.25);
-  }
-  .horario-card .hc-accent {
-    width:6px; background: linear-gradient(to bottom, var(--verde), var(--verde-dark));
-  }
-  .horario-card.s2 .hc-accent { background: linear-gradient(to bottom, #00c8ff, #0070a0); }
-  .horario-card.s3 .hc-accent { background: linear-gradient(to bottom, #ff8c00, #c45000); }
-
+  .horario-card { display:flex; border-radius:18px; margin-bottom:10px; background: var(--card-bg); border: 1.5px solid var(--card-border); transition: transform .2s; }
+  .horario-card.active-salida { border-color: var(--verde); box-shadow: 0 0 15px var(--verde-glow); }
   .hc-body { flex:1; padding:14px 16px; }
-  .hc-time {
-    font-family:'Bebas Neue'; font-size:2rem; line-height:1;
-    letter-spacing:1px; color:#fff;
-  }
-  .horario-card.s2 .hc-time { color:#00c8ff; }
-  .horario-card.s3 .hc-time { color:#ff8c00; }
-  .hc-tag {
-    display:inline-block; font-size:.68rem; font-weight:800;
-    letter-spacing:2px; text-transform:uppercase;
-    padding:2px 8px; border-radius:20px; margin-bottom:4px;
-    background: rgba(0,166,81,0.2); color:var(--verde-light);
-  }
-  .horario-card.s2 .hc-tag { background:rgba(0,200,255,0.15); color:#00c8ff; }
-  .horario-card.s3 .hc-tag { background:rgba(255,140,0,0.15); color:#ff8c00; }
-  .hc-desc { font-size:.78rem; color:var(--gray); line-height:1.4; margin-top:4px; }
+  .hc-time { font-family:'Bebas Neue'; font-size:2rem; color:#fff; }
+  .hc-tag { display:inline-block; font-size:.68rem; font-weight:800; padding:2px 8px; border-radius:20px; background: rgba(0,166,81,0.2); color:var(--verde-light); }
 
-  .hc-right {
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:14px 16px; gap:4px;
-  }
-  .hc-icon { font-size:1.6rem; }
-  .hc-cupo { font-size:.68rem; font-weight:700; color:var(--gray); text-align:center; }
+  .stop-row { display:flex; gap:0; position:relative; }
+  .stop-spine { display:flex; flex-direction:column; align-items:center; width:44px; }
+  .stop-num { width:28px; height:28px; border-radius:50%; background: var(--verde); display:flex; align-items:center; justify-content:center; font-size:.72rem; font-weight:900; z-index:1; }
+  .stop-line { width:2px; background: rgba(0,166,81,0.3); flex:1; }
+  .stop-info { flex:1; padding: 3px 0 22px 10px; }
 
-  /* ── PARADAS ── */
-  .route-section {
-    margin: 24px 16px 0;
-    animation: fadeUp .6s .5s ease both;
-  }
-
-  .stops-list { display:flex; flex-direction:column; }
-
-  .stop-row {
-    display:flex; align-items:flex-start; gap:0; position:relative;
-  }
-
-  .stop-spine {
-    display:flex; flex-direction:column; align-items:center;
-    width:44px; flex-shrink:0;
-  }
-  .stop-num {
-    width:28px; height:28px; border-radius:50%;
-    background: linear-gradient(135deg, var(--verde), var(--verde-dark));
-    display:flex; align-items:center; justify-content:center;
-    font-size:.72rem; font-weight:900; color:#fff;
-    box-shadow: 0 0 12px rgba(0,166,81,0.4);
-    flex-shrink:0; z-index:1;
-    transition: transform .2s;
-  }
-  .stop-row:hover .stop-num { transform:scale(1.15); }
-  .stop-line {
-    flex:1; width:2px;
-    background: linear-gradient(to bottom, rgba(0,166,81,0.4), rgba(0,166,81,0.1));
-    min-height:30px;
-  }
-  .stop-row:last-child .stop-line { display:none; }
-
-  .stop-info {
-    flex:1; padding: 3px 0 22px 10px;
-  }
-  .stop-name {
-    font-size:.9rem; font-weight:700; color:#fff; line-height:1.3;
-  }
-  .stop-hint {
-    font-size:.72rem; color:var(--gray); margin-top:2px;
-  }
-
-  /* ── INFO CARDS ── */
-  .info-cards {
-    margin: 24px 16px 0; display:grid; grid-template-columns:1fr 1fr; gap:12px;
-    animation: fadeUp .6s .55s ease both;
-  }
-  .info-card {
-    border-radius:18px; padding:18px 14px;
-    background: var(--card-bg); border:1.5px solid var(--card-border);
-    backdrop-filter:blur(6px); text-align:center;
-  }
-  .info-card .ic-icon { font-size:1.8rem; margin-bottom:8px; }
-  .info-card .ic-val {
-    font-family:'Bebas Neue'; font-size:2rem; color:var(--verde-light);
-    line-height:1;
-  }
-  .info-card .ic-label {
-    font-size:.72rem; font-weight:700; letter-spacing:2px;
-    text-transform:uppercase; color:var(--gray); margin-top:4px;
-  }
-  .info-card .ic-desc {
-    font-size:.75rem; color:var(--gray); margin-top:4px; line-height:1.3;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    margin: 40px 16px 0;
-    text-align:center; padding:20px;
-    border-top: 1px solid rgba(0,166,81,0.12);
-    animation: fadeUp .6s .7s ease both;
-  }
-  .footer-dev {
-    font-size:.72rem; color:rgba(255,255,255,0.25);
-    letter-spacing:1px;
-  }
+  footer { margin-top: 40px; text-align:center; padding:20px; border-top: 1px solid rgba(0,166,81,0.12); }
+  .footer-dev { font-size:.72rem; color:rgba(255,255,255,0.25); }
   .footer-dev strong { color:var(--verde); }
 
-  /* ── ANIMACIONES ── */
-  @keyframes fadeDown {
-    from{opacity:0;transform:translateY(-20px);}
-    to{opacity:1;transform:translateY(0);}
-  }
-  @keyframes fadeUp {
-    from{opacity:0;transform:translateY(24px);}
-    to{opacity:1;transform:translateY(0);}
-  }
-
-  .cd-num.flip {
-    animation: flipNum .25s ease;
-  }
-  @keyframes flipNum {
-    0%{transform:scaleY(1.1);color:#fff;}
-    100%{transform:scaleY(1);color:var(--verde-light);}
-  }
-
-  .horario-card.pasada { opacity:.45; }
-  .horario-card.pasada .hc-time { text-decoration:line-through; }
-
-  /* ── TOAST ── */
-  #toast {
-    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
-    background:var(--verde); color:#fff;
-    padding:12px 24px; border-radius:50px;
-    font-size:.85rem; font-weight:700;
-    box-shadow:0 6px 24px rgba(0,0,0,0.3);
-    transition:transform .3s ease; z-index:998; white-space:nowrap;
-  }
-  #toast.show { transform:translateX(-50%) translateY(0); }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-20px);} to{opacity:1;transform:translateY(0);} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
 </style>
 </head>
 <body>
 
 <div class="bubble b1"></div>
 <div class="bubble b2"></div>
-<div class="bubble b3"></div>
 
-<!-- BANNER INSTALAR PWA -->
 <div id="pwa-banner">
-  <div class="pb-icon">📲</div>
-  <div class="pb-text">
-    <strong>Instalar App</strong>
-    <span>Accede sin internet, desde tu pantalla de inicio</span>
-  </div>
-  <button class="pb-btn" id="pwa-install-btn">Instalar</button>
-  <button class="pb-close" id="pwa-close-btn" aria-label="Cerrar">✕</button>
+  <div class="pb-text"><strong>Instalar App</strong><span>Acceso directo y modo offline</span></div>
+  <button class="pb-btn" id="pwa-install-btn" style="background:var(--verde);border:none;padding:8px 15px;border-radius:20px;color:#fff;font-weight:bold;">Instalar</button>
 </div>
 
 <div class="wrap">
-
-  <!-- HEADER -->
   <header>
     <div class="sena-badge">
-      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="20" fill="#00a651"/>
-        <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle"
-          font-family="Bebas Neue,sans-serif" font-size="14" fill="white" letter-spacing="1">SENA</text>
-      </svg>
+      <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="20" fill="#00a651"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Bebas Neue" font-size="14" fill="white">SENA</text></svg>
       <span>CTPGA</span>
     </div>
     <h1 class="header-title">RUTA <em>DEL BUS</em></h1>
-    <p class="header-sub">Transporte para Aprendices · Caucasia</p>
-    <div class="disponible-chip">
-      <div class="dot"></div>
-      Disponible desde el Lunes 27 de Abril
-    </div>
+    <p class="header-sub">Transporte Aprendices · Caucasia</p>
   </header>
 
-  <!-- OFFLINE BADGE -->
-  <div id="offline-badge">⚠️ Sin conexión — Mostrando información guardada</div>
-
-  <!-- COUNTDOWN -->
   <div class="countdown-card">
-    <div class="cd-label">⏱ Próxima Salida</div>
-    <div class="cd-salida-name" id="cd-salida-name">—</div>
+    <div class="cd-salida-name" id="cd-salida-name" style="text-align:center; margin-bottom:10px; font-weight:bold;">Cargando...</div>
     <div class="cd-blocks">
-      <div class="cd-block">
-        <div class="cd-num" id="cd-h">00</div>
-        <div class="cd-unit">Horas</div>
-      </div>
-      <div class="cd-sep">:</div>
-      <div class="cd-block">
-        <div class="cd-num" id="cd-m">00</div>
-        <div class="cd-unit">Min</div>
-      </div>
-      <div class="cd-sep">:</div>
-      <div class="cd-block">
-        <div class="cd-num" id="cd-s">00</div>
-        <div class="cd-unit">Seg</div>
-      </div>
-    </div>
-    <div class="cd-next-info">
-      <span class="icon">📍</span>
-      <span id="cd-origin-text">Salida desde <strong>SENA CTPGA</strong></span>
+      <div class="cd-block"><div class="cd-num" id="cd-h">00</div><div class="cd-unit">Horas</div></div>
+      <div class="cd-block"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">Min</div></div>
+      <div class="cd-block"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">Seg</div></div>
     </div>
   </div>
 
-  <!-- INFO CARDS -->
-  <div class="info-cards">
-    <div class="info-card">
-      <div class="ic-icon">🏫</div>
-      <div class="ic-val">SENA</div>
-      <div class="ic-label">CTPGA</div>
-      <div class="ic-desc">Complejo Tecnológico Gestión Agroempresarial</div>
-    </div>
-    <div class="info-card">
-      <div class="ic-icon">🧑‍🎓</div>
-      <div class="ic-val">40</div>
-      <div class="ic-label">Cupos</div>
-      <div class="ic-desc">Por salida para aprendices</div>
-    </div>
+  <div style="padding:0 16px; margin-top:25px;">
+    <h3 style="font-family:'Bebas Neue'; color:var(--gray); margin-bottom:10px;">🕐 Horarios</h3>
+    <div id="card-s1" class="horario-card"><div class="hc-body"><div class="hc-tag">Mañana</div><div class="hc-time">6:00 AM</div></div></div>
+    <div id="card-s2" class="horario-card"><div class="hc-body"><div class="hc-tag">Mediodía</div><div class="hc-time">11:30 AM</div></div></div>
+    <div id="card-s3" class="horario-card"><div class="hc-body"><div class="hc-tag">Tarde</div><div class="hc-time">5:30 PM</div></div></div>
   </div>
 
-  <!-- HORARIOS -->
-  <div class="section">
-    <div class="section-title">🕐 Horarios de Salida</div>
-    <div class="horarios-grid">
-
-      <div class="horario-card s1" id="card-s1">
-        <div class="hc-accent"></div>
-        <div class="hc-body">
-          <div class="hc-tag">1ª Salida</div>
-          <div class="hc-time">6:00 AM</div>
-          <div class="hc-desc">Sale desde la sede SENA CTPGA. Hace todas las paradas hasta Hacienda La Uribe.</div>
-        </div>
-        <div class="hc-right">
-          <div class="hc-icon">🌅</div>
-          <div class="hc-cupo">Mañana</div>
-        </div>
-      </div>
-
-      <div class="horario-card s2" id="card-s2">
-        <div class="hc-accent"></div>
-        <div class="hc-body">
-          <div class="hc-tag">2ª Salida</div>
-          <div class="hc-time">11:30 AM</div>
-          <div class="hc-desc">Recoge en Hacienda La Uribe y realiza el recorrido de regreso al SENA CTPGA.</div>
-        </div>
-        <div class="hc-right">
-          <div class="hc-icon">☀️</div>
-          <div class="hc-cupo">Medio día</div>
-        </div>
-      </div>
-
-      <div class="horario-card s3" id="card-s3">
-        <div class="hc-accent"></div>
-        <div class="hc-body">
-          <div class="hc-tag">3ª Salida</div>
-          <div class="hc-time">5:30 PM</div>
-          <div class="hc-desc">Mismas paradas. Finaliza en La Bomba Las Malvinas (no en Hacienda La Uribe).</div>
-        </div>
-        <div class="hc-right">
-          <div class="hc-icon">🌆</div>
-          <div class="hc-cupo">Tarde</div>
-        </div>
-      </div>
-
-    </div>
+  <div style="padding:0 16px; margin-top:25px;">
+    <h3 style="font-family:'Bebas Neue'; color:var(--gray); margin-bottom:10px;">📍 Paradas</h3>
+    <div id="stops-list"></div>
   </div>
 
-  <!-- PARADAS -->
-  <div class="route-section">
-    <div class="section-title">📍 Paradas de la Ruta</div>
-    <div class="stops-list" id="stops-list"></div>
-  </div>
-
-  <!-- FOOTER -->
   <footer>
-    <p class="footer-dev">
-      Desarrollada por <strong>Vibras Positivas HM</strong> — Derechos de Autor Reservados
-    </p>
+    <p class="footer-dev">Desarrollada por <strong>Vibras Positivas HM</strong> — © 2026</p>
   </footer>
-
-</div><!-- /wrap -->
-
-<div id="toast"></div>
+</div>
 
 <script>
-// ── PARADAS ──
-const paradas = [
-  { nombre: "Frente al cementerio Camello", hint: "Parada 1" },
-  { nombre: "Frente al Éxito", hint: "Parada 2" },
-  { nombre: "Entrada UdeA", hint: "Parada 3" },
-  { nombre: "Corazón de Jesús", hint: "Parada 4" },
-  { nombre: "Frente del semáforo la 10", hint: "Parada 5" },
-  { nombre: "Ara Asovivienda", hint: "Parada 6" },
-  { nombre: "Bahía Coliseo", hint: "Parada 7" },
-  { nombre: "Entrada a Villa Arabia", hint: "Parada 8" },
-  { nombre: "Ara Las Malvinas", hint: "Parada 9" },
-  { nombre: "Hacienda La Uribe", hint: "Parada final — 3ª salida termina en Las Malvinas" },
-];
-
+const paradas = ["Frente Cementerio", "Éxito", "Entrada UdeA", "Corazón de Jesús", "Semáforo la 10", "Ara Asovivienda", "Bahía Coliseo", "Villa Arabia", "Ara Malvinas", "Hda. La Uribe"];
 const stopsList = document.getElementById('stops-list');
 paradas.forEach((p, i) => {
-  stopsList.innerHTML += `
-    <div class="stop-row">
-      <div class="stop-spine">
-        <div class="stop-num">${i+1}</div>
-        <div class="stop-line"></div>
-      </div>
-      <div class="stop-info">
-        <div class="stop-name">${p.nombre}</div>
-        <div class="stop-hint">${p.hint}</div>
-      </div>
-    </div>
-  `;
+  stopsList.innerHTML += `<div class="stop-row"><div class="stop-spine"><div class="stop-num">${i+1}</div><div class="stop-line"></div></div><div class="stop-info"><div class="stop-name">${p}</div></div></div>`;
 });
 
-// ── COUNTDOWN ──
 const SALIDAS = [
-  { id:'s1', min: 6*60,      nombre:'Primera Salida · 6:00 AM',   card:'card-s1' },
-  { id:'s2', min: 11*60+30,  nombre:'Segunda Salida · 11:30 AM',  card:'card-s2' },
-  { id:'s3', min: 17*60+30,  nombre:'Tercera Salida · 5:30 PM',   card:'card-s3' },
+  { id:'s1', min: 6*60, nombre:'6:00 AM', card:'card-s1' },
+  { id:'s2', min: 11*60+30, nombre:'11:30 AM', card:'card-s2' },
+  { id:'s3', min: 17*60+30, nombre:'5:30 PM', card:'card-s3' },
 ];
 
-function getColombiaNow() {
+function updateCountdown() {
   const now = new Date();
   const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-  return new Date(utc - 5 * 3600000);
-}
-
-let prevH='', prevM='', prevS='';
-
-function updateCountdown() {
-  const now = getColombiaNow();
-  const minNow = now.getHours() * 60 + now.getMinutes();
-
-  SALIDAS.forEach(s => {
-    const card = document.getElementById(s.card);
-    if (minNow > s.min + 5) {
-      card.classList.add('pasada');
-      card.classList.remove('active-salida');
-    } else {
-      card.classList.remove('pasada');
-    }
-  });
+  const col = new Date(utc - 5 * 3600000);
+  const minNow = col.getHours() * 60 + col.getMinutes();
 
   let proxima = SALIDAS.find(s => s.min > minNow);
-  const cdSalidaName = document.getElementById('cd-salida-name');
-  const cdH = document.getElementById('cd-h');
-  const cdM = document.getElementById('cd-m');
-  const cdS = document.getElementById('cd-s');
+  
+  SALIDAS.forEach(s => document.getElementById(s.card).classList.remove('active-salida'));
 
   if (!proxima) {
-    cdSalidaName.textContent = '¡No hay más salidas hoy!';
-    cdH.textContent = '00'; cdM.textContent = '00'; cdS.textContent = '00';
+    document.getElementById('cd-salida-name').textContent = "No hay más rutas hoy";
     return;
   }
 
   document.getElementById(proxima.card).classList.add('active-salida');
-  cdSalidaName.textContent = proxima.nombre;
+  document.getElementById('cd-salida-name').textContent = "Próxima salida: " + proxima.nombre;
 
-  const segundosSalida = proxima.min * 60;
-  const segundosNow = now.getHours()*3600 + now.getMinutes()*60 + now.getSeconds();
-  let diff = Math.max(0, segundosSalida - segundosNow);
-
-  const hh = String(Math.floor(diff / 3600)).padStart(2,'0');
-  const mm = String(Math.floor((diff % 3600) / 60)).padStart(2,'0');
-  const ss = String(diff % 60).padStart(2,'0');
-
-  function setNum(el, val, prev) {
-    if (val !== prev) {
-      el.classList.remove('flip');
-      void el.offsetWidth;
-      el.classList.add('flip');
-    }
-    el.textContent = val;
-    return val;
-  }
-
-  prevH = setNum(cdH, hh, prevH);
-  prevM = setNum(cdM, mm, prevM);
-  prevS = setNum(cdS, ss, prevS);
+  let diff = (proxima.min * 60) - (col.getHours()*3600 + col.getMinutes()*60 + col.getSeconds());
+  document.getElementById('cd-h').textContent = String(Math.floor(diff / 3600)).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(Math.floor((diff % 3600) / 60)).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(diff % 60).padStart(2,'0');
 }
 
-updateCountdown();
 setInterval(updateCountdown, 1000);
+updateCountdown();
 
-// ── TOAST ──
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-document.getElementById('card-s1').addEventListener('click', () =>
-  showToast('🌅 Primera salida · 6:00 AM desde SENA CTPGA'));
-document.getElementById('card-s2').addEventListener('click', () =>
-  showToast('☀️ Segunda salida · 11:30 AM desde Hda. La Uribe'));
-document.getElementById('card-s3').addEventListener('click', () =>
-  showToast('🌆 Tercera salida · 5:30 PM · Finaliza en Las Malvinas'));
-
-// ══════════════════════════════════════════
-// ── PWA: SERVICE WORKER + INSTALL BANNER ──
-// ══════════════════════════════════════════
-
-// Detectar offline
-function updateOnlineStatus() {
-  const badge = document.getElementById('offline-badge');
-  if (!navigator.onLine) {
-    badge.classList.add('visible');
-  } else {
-    badge.classList.remove('visible');
-  }
-}
-window.addEventListener('online', updateOnlineStatus);
-window.addEventListener('offline', updateOnlineStatus);
-updateOnlineStatus();
-
-// Registrar Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sena-ruta-bus/sw.js', {
-      scope: '/sena-ruta-bus/'
-    })
-    .then(reg => {
-      console.log('[PWA] SW registrado:', reg.scope);
-
-      // Detectar actualización disponible
-      reg.addEventListener('updatefound', () => {
-        const newWorker = reg.installing;
-        newWorker.addEventListener('statechange', () => {
-          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            showToast('🔄 Nueva versión disponible — recarga la página');
-          }
-        });
-      });
-    })
-    .catch(err => console.warn('[PWA] Error SW:', err));
-  });
-}
-
-// Banner instalar (Android/Chrome)
-let deferredPrompt = null;
-
+let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  // Mostrar banner solo si no fue descartado antes
-  if (!localStorage.getItem('pwa-dismissed')) {
-    document.getElementById('pwa-banner').classList.add('visible');
-  }
+  document.getElementById('pwa-banner').style.display = 'flex';
 });
 
 document.getElementById('pwa-install-btn').addEventListener('click', () => {
-  if (!deferredPrompt) return;
-  document.getElementById('pwa-banner').classList.remove('visible');
-  deferredPrompt.prompt();
-  deferredPrompt.userChoice.then(choice => {
-    if (choice.outcome === 'accepted') {
-      showToast('🎉 ¡App instalada exitosamente!');
-    }
-    deferredPrompt = null;
-  });
-});
-
-document.getElementById('pwa-close-btn').addEventListener('click', () => {
-  document.getElementById('pwa-banner').classList.remove('visible');
-  localStorage.setItem('pwa-dismissed', '1');
-});
-
-window.addEventListener('appinstalled', () => {
-  document.getElementById('pwa-banner').classList.remove('visible');
-  deferredPrompt = null;
-  showToast('✅ App instalada en tu dispositivo');
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    document.getElementById('pwa-banner').style.display = 'none';
+  }
 });
 </script>
 </body>
 </html>
-
